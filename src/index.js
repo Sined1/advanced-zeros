@@ -24,5 +24,30 @@ module.exports = function getZerosCount(number, base) {
       i++;
     }
   }
-  return primeArray;
+
+  //algorithm of counting zeros for every value from primeArray
+  let ans = [];
+  for (i = 0; i < primeArray.length; i++) {
+    let x = primeArray[i];
+    let div = 0;
+    let sum = 0;
+    for (j = 0; j < primeArray.length; j++) {
+      if (x == primeArray[j]) div++;
+    }
+    for (k = 1; Math.pow(x, k) <= number; k++) {
+      sum += parseInt(number / Math.pow(x, k));
+    }
+    ans.push(parseInt(sum/div));
+  }
+
+  //find min in ans array
+  let a = ans[0];
+  if (ans.length > 1) {
+    for (i = 1; i < ans.length; i++) {
+      if (a > ans[i]) {
+        a = ans[i];
+      }
+    }
+  }
+  return a;
 }
