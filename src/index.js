@@ -13,5 +13,16 @@ module.exports = function getZerosCount(number, base) {
       return false;
     }
   }
-  
+
+  //get primeArray
+  let primeArray = [];
+  for (i = 2; i <= base; ) {
+    if (isPrime(i) && (base % i == 0)) {
+      primeArray.push(i);
+      base /= i;
+    } else {
+      i++;
+    }
+  }
+  return primeArray;
 }
